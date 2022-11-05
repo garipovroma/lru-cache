@@ -26,7 +26,6 @@ internal class LRUCacheTest {
 
     @Test
     fun testSample1() {
-        val cache = LRUCache<Int, Int>(2)
         cache.put(2, 1)
         cache.put(1, 1)
         cache.put(2, 3)
@@ -99,6 +98,7 @@ internal class LRUCacheTest {
             cache.put(i, i)
             if (i >= cap) {
                 assertEquals(null, cache.get(i - cap))
+                assertEquals(i - cap / 2, cache.get(i - cap / 2))
             }
         }
     }

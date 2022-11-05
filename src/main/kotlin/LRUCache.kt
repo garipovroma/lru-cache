@@ -35,6 +35,7 @@ class LRUCache<K, V>(private val capacity: Int) {
     private fun insertAfter(node: Node<K, V>, newNode: Node<K, V>): Node<K, V> {
         assert(node != newNode)
         assert(!hashMap.containsKey(newNode.key!!))
+        assert(listSize < capacity)
         val nextNode = node.next
         if (nextNode != null) {
             nextNode.prev = newNode
