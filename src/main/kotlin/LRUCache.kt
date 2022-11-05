@@ -61,6 +61,7 @@ class LRUCache<K, V>(private val capacity: Int) {
             removeNode(tail.prev!!)
         }
         insertAfter(head, newNode)
+        assert(listSize <= capacity)
         assert(hashMap.containsKey(newNode.key!!))
     }
 
@@ -68,6 +69,7 @@ class LRUCache<K, V>(private val capacity: Int) {
         val node: Node<K, V> = hashMap[key] ?: return null
         removeNode(node)
         insertAfter(head, node)
+        assert(head.next!!.key == node.key && head.next!!.value == node.value)
         return node.value
     }
 }
